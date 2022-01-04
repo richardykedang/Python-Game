@@ -15,14 +15,34 @@ def print_board():
 
 # print_board() # ketika di panggil fungsinya harusnya grid tsb sdh terbentuk 3X3
 
-while True:
-    print_board()
-    # strip untuk menghilangkan karakter spasi
+#pindahkan choice and move into function player move
+def player_move(icon):
+    if icon == "X":
+        number = 1
+    elif icon == "O":
+        number = 2
+
+    print("Your turn player {}".format(number))
+
+
     choice = int(input("Enter your move (1 -9) : ").strip())
-    # - 1 untuk dapatkan hasil sesuai index array
-    # boards[choice - 1] = "X"
-    # Pengecekan jika board tsb sdh terisi keluarkan alert jika tidak tandai dgn X
+
     if boards[choice -1] == " ":
-        boards[choice -1] = "X"
+        boards[choice -1] = icon
     else:
         print("That space is taken")
+
+while True:
+    print_board()
+    # # strip untuk menghilangkan karakter spasi
+    # choice = int(input("Enter your move (1 -9) : ").strip())
+    # # - 1 untuk dapatkan hasil sesuai index array
+    # # boards[choice - 1] = "X"
+    # # Pengecekan jika board tsb sdh terisi keluarkan alert jika tidak tandai dgn X
+    # if boards[choice -1] == " ":
+    #     boards[choice -1] = "X"
+    # else:
+    #     print("That space is taken")
+    player_move("X")
+    print_board()
+    player_move("O")
