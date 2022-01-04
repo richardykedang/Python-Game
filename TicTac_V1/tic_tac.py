@@ -15,7 +15,7 @@ def print_board():
 
 # print_board() # ketika di panggil fungsinya harusnya grid tsb sdh terbentuk 3X3
 
-#pindahkan choice and move into function player move
+#pindahkan choice and move into function player move untuk menentukan posisi
 def player_move(icon):
     if icon == "X":
         number = 1
@@ -32,6 +32,21 @@ def player_move(icon):
     else:
         print("That space is taken")
 
+# untuk mapping victory
+def is_victory(icon):
+    if  (boards[0] == icon and boards[1] == icon and boards[2] == icon) or \
+        (boards[3] == icon and boards[4] == icon and boards[5] == icon) or \
+        (boards[6] == icon and boards[7] == icon and boards[8] == icon) or \
+        (boards[0] == icon and boards[3] == icon and boards[6] == icon) or \
+        (boards[1] == icon and boards[4] == icon and boards[7] == icon) or \
+        (boards[2] == icon and boards[5] == icon and boards[8] == icon) or \
+        (boards[0] == icon and boards[4] == icon and boards[8] == icon) or \
+        (boards[2] == icon and boards[4] == icon and boards[6] == icon) :
+        return True
+    else:
+        return False
+
+
 while True:
     print_board()
     # # strip untuk menghilangkan karakter spasi
@@ -45,4 +60,11 @@ while True:
     #     print("That space is taken")
     player_move("X")
     print_board()
+    if is_victory("X"):
+        print("X Wins ! Congratulation !")
+        break
     player_move("O")
+    print_board()
+    if is_victory("O"):
+        print("O Wins ! Congratulation !")
+        break
