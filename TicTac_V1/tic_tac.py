@@ -45,7 +45,13 @@ def is_victory(icon):
         return True
     else:
         return False
-
+#mapping draw -> kondisi ini terjadi kalau tidak ada string kosong lagi di board
+# 1 5 3 2 8 6 4 7 9
+def is_draw():
+    if " " not in boards:
+        return True
+    else:
+        return False
 
 while True:
     print_board()
@@ -62,6 +68,10 @@ while True:
     print_board()
     if is_victory("X"):
         print("X Wins ! Congratulation !")
+        break
+    # alasan taruh di tengah krna draw itu akan di cek di tengah permainan, kala taruh di bawah maka draw tsb tdk akan kebaca krna tertutup sama win, sebab alur pemrograman di baca dari atas ke bawah
+    elif is_draw():
+        print("Its draw!")
         break
     player_move("O")
     print_board()
